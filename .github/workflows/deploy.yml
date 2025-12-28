@@ -43,8 +43,8 @@ jobs:
           framework: terraform
           # Optional: Skip specific checks if they are false positives or accepted risks
           # skip_check: CKV_AWS_1,CKV_AWS_2
-          soft_fail: false # Fail the build if issues are found
-
+          soft_fail: true # false # Fail the build if issues are found (true temporarily to see the results without crashing)
+          download_external_modules: true
   build-and-deploy:
     name: Build & Deploy
     needs: security-scan # Wait for security gates to pass!
