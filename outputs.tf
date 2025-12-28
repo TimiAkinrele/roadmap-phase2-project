@@ -8,3 +8,8 @@ output "repository_url" {
   value       = module.compute.repository_url
   description = "The URL of the ECR repository"
 }
+
+output "github_role_arn" {
+  value = module.github-oidc.role_arn
+  description = "ARN of the IAM role for github actions"
+}

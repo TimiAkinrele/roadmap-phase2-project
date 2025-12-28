@@ -67,3 +67,10 @@ module "compute" {
   # to point to your real app if you are ready.
   container_image = "timiakinrele1/roadmap-phase1-project:v2"
 }
+
+module "github-oidc" {
+  source = "./modules/github-oidc"
+
+  project_name = var.project_name
+  github_repo = "TimiAkinrele/roadmap-phase2-project"
+}

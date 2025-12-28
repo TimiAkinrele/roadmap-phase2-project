@@ -1,6 +1,6 @@
 # 1. Create the OIDC Provider for GitHub (public/standard information)
 resource "aws_iam_openid_connect_provider" "github" {
-  url = "https://token.actions.githubusercontent.com"
+  url            = "https://token.actions.githubusercontent.com"
   client_id_list = ["sts:amazonaws.com"]
 
   # handled automatically for aws, but good for explicability  
@@ -41,7 +41,7 @@ data "aws_iam_policy_document" "github_trust_policy" {
 
 # 3. Create the IAM Role
 resource "aws_iam_role" "github_actions" {
-  name = "${var.project_name}-github-actions-role"
+  name               = "${var.project_name}-github-actions-role"
   assume_role_policy = data.aws_iam_policy_document.github_trust_policy.json
 }
 
@@ -49,64 +49,64 @@ resource "aws_iam_role" "github_actions" {
 # I chose to avoid giving full admin access, but rather explicitly list the services Terraform needs
 
 resource "aws_iam_policy" "terraform_permissions" {
-  name  = "${var.project_name}-terraform-policy"
+  name        = "${var.project_name}-terraform-policy"
   description = "Permissions for GitHub Actions to deploy infrastructure (will be updated with more perms, if needed)"
 
-  policy = jsondecode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
-        # Networking and Compute Perms
-        {
-            Effect = "Allow"
-            Action = [
-                "ec2:*",
-                "elasticloadbalancing:*",
-                "ecs:*",
-                "ecr:*"
-            ]
-            Resource = "*"
-        },
-        # DB and Storage Perms
-        {
-            Effect = "Allow"
-            Action = [
-                "rds:*",
-                "s3:*",
-                "dynamodb:*",
-                "secretsmanager:*",
-                "kms:*"
-            ]
-            Resource = "*"
-        },
-        # IAM Management (Restricted Perms) since Terraform needs to create roles for ECS
-        {
-            Effect = "Allow"
-            Action = [
-                "iam:CreateRole",
-                "iam:DeleteRole",
-                "iam:GetRole",
-                "iam:PassRole",
-                "iam:AttachRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:CreatePolicy",
-                "iam:DeletePolicy",
-                "iam:GetPolicy",
-                "iam:GetPolicyVersion",
-                "iam:ListPolicyVersions",
-                "iam:ListAttachedRolePolicies",
-                "iam:ListRolePolicies"
-            ]
-            Resource = "*"
-        },
-        # Logging and Monitoring
-        {
-            Effect = "Allow"
-            Action = [
-                "logs:*",
-                "cloudwatch:*"
-            ]
-            Resource = "*"
-        }
+      # Networking and Compute Perms
+      {
+        Effect = "Allow"
+        Action = [
+          "ec2:*",
+          "elasticloadbalancing:*",
+          "ecs:*",
+          "ecr:*"
+        ]
+        Resource = "*"
+      },
+      # DB and Storage Perms
+      {
+        Effect = "Allow"
+        Action = [
+          "rds:*",
+          "s3:*",
+          "dynamodb:*",
+          "secretsmanager:*",
+          "kms:*"
+        ]
+        Resource = "*"
+      },
+      # IAM Management (Restricted Perms) since Terraform needs to create roles for ECS
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:CreateRole",
+          "iam:DeleteRole",
+          "iam:GetRole",
+          "iam:PassRole",
+          "iam:AttachRolePolicy",
+          "iam:DetachRolePolicy",
+          "iam:CreatePolicy",
+          "iam:DeletePolicy",
+          "iam:GetPolicy",
+          "iam:GetPolicyVersion",
+          "iam:ListPolicyVersions",
+          "iam:ListAttachedRolePolicies",
+          "iam:ListRolePolicies"
+        ]
+        Resource = "*"
+      },
+      # Logging and Monitoring
+      {
+        Effect = "Allow"
+        Action = [
+          "logs:*",
+          "cloudwatch:*"
+        ]
+        Resource = "*"
+      }
     ]
   })
 
@@ -114,6 +114,6 @@ resource "aws_iam_policy" "terraform_permissions" {
 
 # 5. Attach the Custom Policy to github actions role
 resource "aws_iam_role_policy_attachment" "terraform" {
-  role = aws_iam_role.github_actions.name
+  role       = aws_iam_role.github_actions.name
   policy_arn = aws_iam_policy.terraform_permissions.arn
 }
