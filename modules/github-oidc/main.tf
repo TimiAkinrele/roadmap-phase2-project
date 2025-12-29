@@ -95,6 +95,7 @@ resource "aws_iam_policy" "terraform_permissions" {
           "iam:ListPolicyVersions",
           "iam:ListAttachedRolePolicies",
           "iam:ListRolePolicies",
+          "iam:ListPolicies",
           "iam:ListRoles",                    # Required to read existing roles
           "iam:GetOpenIDConnectProvider",     # Required to read the OIDC provider
           "iam:ListOpenIDConnectProviders",

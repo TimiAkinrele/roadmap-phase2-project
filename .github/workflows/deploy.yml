@@ -102,6 +102,7 @@ jobs:
         env:
           NEW_IMAGE: ${{ env.image }}
           TF_VAR_environment: "production"
+          TF_VAR_project_name: "devsecops-poll-app"
         run: |
           terraform apply -auto-approve \
           -var="container_image=$NEW_IMAGE"
