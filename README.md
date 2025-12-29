@@ -68,10 +68,10 @@ This project wasn't just about writing code; it was about debugging complex clou
     - Fix: Logs revealed a Python AttributeError due to a deprecated Flask function, allowing for a targeted code fix in app.py.
 
 ## How I'd Reproduce in an Enterprise Production?
-If I had to take my current "Lean" architecture to a high-compliance, more secure environment (with a higher budget than me), I would execute the followiung upgrades:
+If I had to take my current "Lean" architecture to a high-compliance, more secure environment (with a higher budget than me), I would execute the following upgrades:
 - Networking: Change the ```app_subnet_ids``` variable in the Compute module to point to Private Subnets and provision NAT Gateways for secure outbound traffic.
-- Encryption: Add an HTTPS listener to my ALB using an ACM Certicate and enforce a strict HTTP --> HTTPS redirect.
-- Observabilitiy: Enable VPC Flow Logs and ALB Access Logs, shipping traffic data to an encrypted S3 bucket for auditing purposes.
+- Encryption: Add an HTTPS listener to my ALB using an ACM Certificate and enforce a strict HTTP --> HTTPS redirect.
+- Observability: Enable VPC Flow Logs and ALB Access Logs, shipping traffic data to an encrypted S3 bucket for auditing purposes.
 - Database: Enable ```multi_az = true``` for high availability (expensive but important) and ```deletion_protection = true``` to prevent accidental deletion and data loss
 - State Management: Enable Cross-Region Replication on the S3 State Bucket to ensure disaster recovery resillience (addressing a couple risk accepted Checkov Issues).
 
