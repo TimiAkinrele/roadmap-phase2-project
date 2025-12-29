@@ -101,6 +101,7 @@ jobs:
       - name: Terraform Apply
         env:
           NEW_IMAGE: ${{ env.image }}
+          TF_VAR_environment: "production"
         run: |
           terraform apply -auto-approve \
           -var="container_image=$NEW_IMAGE"

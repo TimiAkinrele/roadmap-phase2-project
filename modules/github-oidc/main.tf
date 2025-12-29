@@ -94,7 +94,12 @@ resource "aws_iam_policy" "terraform_permissions" {
           "iam:GetPolicyVersion",
           "iam:ListPolicyVersions",
           "iam:ListAttachedRolePolicies",
-          "iam:ListRolePolicies"
+          "iam:ListRolePolicies",
+          "iam:ListRoles",                    # Required to read existing roles
+          "iam:GetOpenIDConnectProvider",     # Required to read the OIDC provider
+          "iam:ListOpenIDConnectProviders",
+          "iam:TagRole",                      # Often needed for tagging
+          "iam:UntagRole"
         ]
         Resource = "*"
       },

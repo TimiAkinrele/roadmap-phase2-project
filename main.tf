@@ -72,5 +72,5 @@ module "github-oidc" {
   source = "./modules/github-oidc"
 
   project_name = var.project_name
-  github_repo = "TimiAkinrele/roadmap-phase2-project"
+  github_repo  = "TimiAkinrele/roadmap-phase2-project"
 }

@@ -28,5 +28,5 @@ variable "vpc_cidr" {
 
 variable "container_image" {
   description = "Docker image ro tun in the ECS Task"
-  type = string
+  type        = string
 }

@@ -10,6 +10,6 @@ output "repository_url" {
 }
 
 output "github_role_arn" {
-  value = module.github-oidc.role_arn
+  value       = module.github-oidc.role_arn
   description = "ARN of the IAM role for github actions"
 }
