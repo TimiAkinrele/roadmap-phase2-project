@@ -62,7 +62,7 @@ This project wasn't just about writing code; it was about debugging complex clou
     - Diagnosis: The OIDC Provider was configured with a typo (sts:amazonaws.com instead of sts.amazonaws.com).
     - Fix: Corrected the client ID list in the Terraform OIDC module.
 
-5. . Application Observability
+5. Application Observability
     - Issue: Application crashing silently with 503 Service Unavailable on the ALB.
     - Diagnosis: Enabled awslogs driver in the Terraform Task Definition to stream stdout to CloudWatch.
     - Fix: Logs revealed a Python AttributeError due to a deprecated Flask function, allowing for a targeted code fix in app.py.
