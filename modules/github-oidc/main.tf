@@ -91,6 +91,7 @@ resource "aws_iam_policy" "terraform_permissions" {
           "iam:CreatePolicy",
           "iam:DeletePolicy",
           "iam:DeletePolicyVersion",
+          "iam:CreatePolicyVersion",
           "iam:GetPolicy",
           "iam:GetPolicyVersion",
           "iam:ListPolicyVersions",
