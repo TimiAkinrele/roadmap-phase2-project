@@ -22,7 +22,7 @@ The system is designed with a "Lean Production" philosophy: utilising enterprise
 ## Design Decisions & Trade-Offs
 
 I made deliberate architectural choices to balance Security vs. Cost vs. Complexity.
-| Component | Our Choice | Enterprise Standard | Rationale |
+| Component | My Choice | Enterprise Standard | Rationale |
 |---------|-----------|--------------------|-----------|
 | Compute | Fargate Spot | Fargate Standard | Spot instances reduce cost by ~70%. Trade-off: capacity can be reclaimed, requiring a resilient, stateless application design. |
 | Network | Public Subnets | Private Subnets + NAT Gateway | Running tasks in public subnets (locked down by security groups) avoids the ~$64/month NAT Gateway cost while maintaining isolation. |
