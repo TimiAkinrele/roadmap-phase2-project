@@ -3,6 +3,8 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+# checkov:skip=CKV2_AWS_11: "Flow Logs cost extra money, skipping for learning lab"
+
 # 1. Create our VPC
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr

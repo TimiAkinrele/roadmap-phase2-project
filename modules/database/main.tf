@@ -34,6 +34,12 @@ resource "aws_db_subnet_group" "db_subnet_g" {
 }
 
 # 4. Create the RDS Database Instance
+
+# CHECKOV Approved Errors
+
+# checkov:skip=CKV_AWS_353: "Performance Insights cost money, skipping for learning lab"
+# checkov:skip=CKV_AWS_293: "We need to destroy this daily to save costs"
+# checkov:skip=CKV_AWS_157: "Multi-AZ costs money, skipping for learning lab"
 resource "aws_db_instance" "rds_db" {
   identifier        = "${var.project_name}-db"
   allocated_storage = 20 # 20GB Free Tier limit :(

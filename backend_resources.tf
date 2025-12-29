@@ -1,4 +1,6 @@
 # 1. The S3 Bucket for State Storage
+
+# checkov:skip=CKV_AWS_144: "Requires a 2nd bucket and data transfer costs, which i thought was overkill for a temp lab"
 resource "aws_s3_bucket" "tf_state_bucket" {
   # Unique buckent name
   bucket = "terraform-state-devsecops-admin-timi-unique-1"

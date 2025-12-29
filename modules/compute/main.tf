@@ -1,4 +1,6 @@
 # 1. Application Load Balancer (ALB)
+# checkov:skip=CKV2_AWS_20: "To use HTTPS/TLS, I need a custom domain, but not being utilised in this lab"
+# checkov:skip=CKV2_AWS_103: "To use HTTPS/TLS, I need a custom domain, but not being utilised in this lab"
 
 resource "aws_lb" "load_balancer" {
   name               = "${var.project_name}-alb"

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Poll</title>
+    <style>
+        body { font-family: sans-serif; display: grid; place-items: center; min-height: 90vh; background-color: #f4f4f9; }
+        .container { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 2rem; }
+        h1 { text-align: center; color: #333; }
+        .buttons { display: flex; gap: 1rem; margin: 2rem 0; }
+        button { font-size: 1rem; padding: 0.8rem 1.2rem; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s ease; }
+        #btn-devops { background-color: #007bff; color: white; }
+        #btn-ai { background-color: #28a745; color: white; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        #results { font-size: 1.2rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What is your career focus?</h1>
+        <div class="buttons">
+            <button id="btn-devops">Vote for DevSecOps</button>
+            <button id="btn-ai">Vote for AI Security</button>
+        </div>
+        <div id="results">Loading results...</div>
+    </div>
+    <script>
+        const devopsBtn = document.getElementById('btn-devops');
+        const aiBtn = document.getElementById('btn-ai');
+        const resultsDiv = document.getElementById('results');
+        const API_BASE_URL = '';
+
+        async function vote(choice) {
+            try {
+                await fetch(`${API_BASE_URL}/api/vote`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ choice: choice })
+                });
+                getResults();
+            } catch (error) {
+                console.error('Error voting:', error);
+                resultsDiv.innerHTML = "Error connecting to server.";
+            }
+        }
+
+        async function getResults() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/results`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                resultsDiv.innerHTML = `
+                    <strong>DevSecOps:</strong> ${data.devops || 0} votes<br>
+                    <strong>AI Security:</strong> ${data.ai || 0} votes
+                `;
+            } catch (error) {
+                console.error('Error fetching results:', error);
+                resultsDiv.innerHTML = "Error connecting to server.";
+            }
+        }
+
+        devopsBtn.onclick = () => vote('devops');
+        aiBtn.onclick = () => vote('ai');
+        
+        // Load initial results
+        getResults();
+    </script>
+</body>
+</html>
