@@ -25,3 +25,8 @@ variable "vpc_cidr" {
   default     = "10.0.0.0/16" # Provides 2^16 (2^32-CIDR val = 65,536) IP address range for our classless interdomain routing block
 
 }
+
+variable "container_image" {
+  description = "Docker image ro tun in the ECS Task"
+  type = string
+}
