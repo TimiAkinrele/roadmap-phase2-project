@@ -6,6 +6,9 @@ This repository contains the Infrastructure as Code (IaC) and CI/CD pipeline for
 
 The system is designed with a "Lean Production" philosophy: utilising enterprise-grade security patterns (Zero Trust, Least Privilege) while optimising for cost (AWS Free Tier/Spot Instances).
 
+<img width="1380" height="612" alt="Screenshot 2026-01-09 at 21 27 17" src="https://github.com/user-attachments/assets/6f6124c3-7e58-495c-9afe-bb3b1c5ac215" />
+
+
 ### The Stack
 
 - IaC: Terraform (Modular structure).
