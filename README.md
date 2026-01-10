@@ -2,6 +2,14 @@
 
 This repository contains the Infrastructure as Code (IaC) and CI/CD pipeline for a secure, 3-tier polling application. It represents the transition from local development to a fully automated, cloud-native architecture.
 
+## Current Deployment Status = X (Cost Optimisation)
+
+Note: You may observe a failing status on the latest GitHub Actions workflow. This is intentional and acknowledged.
+
+To adhere to strict budget constraints (AWS Free Tier optimisation), the active infrastructure, including the ECR Repository, ECS Cluster, and RDS Database have been torn down using ```terraform destroy```. Consequently, the CI/CD pipeline cannot currently push Docker images because the target ECR repository does not exist.
+
+However, the Remote State (S3) and DynamoDB Lock remain intact as persistent infrastructure. The entire production-grade stack can be restored to a fully operational state in ~10 minutes by simply running ```terraform apply```.
+
 ## Architecture Overview
 
 The system is designed with a "Lean Production" philosophy: utilising enterprise-grade security patterns (Zero Trust, Least Privilege) while optimising for cost (AWS Free Tier/Spot Instances).
