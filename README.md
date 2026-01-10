@@ -18,10 +18,11 @@ The system is designed with a "Lean Production" philosophy: utilising enterprise
 - Security: AWS IAM (Roles), Secrets Manager, KMS, OIDC.
 - Observability: CloudWatch Logs (via awslogs driver) for container debugging and monitoring.
 - CI/CD: GitHub Actions with DevSecOps gates (TruffleHog, Checkov, Trivy).
+- State Management: S3 Remote Backend with DynamoDB locking for team collaboration and state protection.
 
 ### The Traffic Flow
 
-``` User -> Route 53 -> ALB (Public Subnet) -> Fargate Task (Public Subnet + Locked SG) -> RDS (Private Subnet) ```
+``` User -> ALB (Public Subnet) -> Fargate Task (Public Subnet + Locked SG) -> RDS (Private Subnet) ```
 
 ## Design Decisions & Trade-Offs
 
